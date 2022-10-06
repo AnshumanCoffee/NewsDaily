@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import About from "./Components/About";
+import Navbar from "./Components/Navbar";
+import News from "./Components/News";
+import TextForm from "./Components/TextForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Navbar  /> */}
+      <Navbar title="NewsDaily" />
+      <div className="container my-3">
+        <TextForm heading="Enter the text to analyze below..." />
+        <About />
+        <News heading="Newsdaily - Top Headline"/>
+      </div>
+    </>
   );
 }
 
 export default App;
+
+//props are always read only.
