@@ -76,7 +76,19 @@ export class News extends React.Component {
       loading: false,
     };
   }
+
+  async componentDidMount(){
+    console.log("cdm1");
+    let url =" https://newsapi.org/v2/everything?q=tesla&from=2022-09-06&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926"
+    let data = await fetch(url);
+    let parseData = await data.json()
+    console.log(parseData);
+    this.setState({articles: parseData.articles})
+  }
+
   render() {
+    console.log("cdm2");
+
     // render method is a lifecycle method.
     // when react runs a compnent then a series of methods will run actually .
     //render first compile's JSX in HTML then it render's HTML .
@@ -84,11 +96,11 @@ export class News extends React.Component {
       <div className="container my-3">
         <h2>{this.props.heading}</h2>
         <div className="row">
-          {this.state.articles[0].articles.map((element) => {
+          {this.state.articles.map((element) => {
             return <div className="col md-4" key={element.url}>
                 <NewsItem
-                  title={element.title.slice(0, 40)}
-                  description={element.description.slice(0, 141)}
+                  title={element.title?element.title.slice(0, 40): ""}
+                  description={element.description?element.description.slice(0, 141):""}
                   imageUrl={element.urlToImage}
                   newsUrl={element.url}
                 />

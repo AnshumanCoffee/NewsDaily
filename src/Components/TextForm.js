@@ -51,7 +51,7 @@ export default function TextForm(props) {
       </button>
     </div>
     <div className="conatiner" my-2>
-        <h2>Your text summery</h2>
+        <h2>Your News Article's Summary</h2>
         <p>{text.split(" ").length} words, {text.length} characters</p>
         <p>{0.008*text.split(" ").length } minutes to read</p>
         <h3>Preview</h3>

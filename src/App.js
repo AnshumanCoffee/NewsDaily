@@ -10,9 +10,9 @@ function App() {
       {/* <Navbar  /> */}
       <Navbar title="NewsDaily" />
       <div className="container my-3">
-        <TextForm heading="Enter the text to analyze below..." />
+        <TextForm heading="Write Your Article Below..." />
         <About />
-        <News heading="Newsdaily - Top Headline"/>
+        <News heading="NewsDaily - Top Headlines"/>
       </div>
     </>
   );
