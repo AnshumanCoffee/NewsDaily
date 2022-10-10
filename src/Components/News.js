@@ -32,7 +32,7 @@ export class News extends React.Component {
             "Meta Make-A-Video research builds on the recent progress made in text-to-image generation technology built to enable text-to-video generation. The system uses",
           url: "https://www.nextbigfuture.com/2022/09/meta-text-to-video-generator.html",
           urlToImage:
-          "https://live-production.wcms.abc-cdn.net.au/4142279bc46b858c490284aae0dc5f46?impolicy=wcms_crop_resize&cropH=247&cropW=439&xPos=0&yPos=94&width=862&height=485",
+            "https://live-production.wcms.abc-cdn.net.au/4142279bc46b858c490284aae0dc5f46?impolicy=wcms_crop_resize&cropH=247&cropW=439&xPos=0&yPos=94&width=862&height=485",
           publishedAt: "2022-09-30T06:09:56Z",
           content:
             "Meta Make-A-Video research builds on the recent progress made in text-to-image generation technology built to enable text-to-video generation. The system uses images with descriptions to learn what t… [+2065 chars]",
@@ -70,24 +70,26 @@ export class News extends React.Component {
   constructor() {
     //constructor tab run krta h jb iss  class ka koi object banta h ...
     super();
-    console.log("I'm constructor");
+    // console.log("I'm constructor");
     this.state = {
       articles: this.articles,
       loading: false,
     };
   }
 
-  async componentDidMount(){
-    console.log("cdm1");
-    let url =" https://newsapi.org/v2/everything?q=tesla&from=2022-09-06&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926"
+  async componentDidMount() {
+    // console.log("cdm1");
+    let url =
+    "https://newsapi.org/v2/everything?q=tesla&from=2022-09-10&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
+
     let data = await fetch(url);
-    let parseData = await data.json()
-    console.log(parseData);
-    this.setState({articles: parseData.articles})
+    let parsedData = await data.json();
+    // console.log(parsedData);
+    this.setState({ articles: parsedData.articles });
   }
 
   render() {
-    console.log("cdm2");
+    // console.log("cdm2");
 
     // render method is a lifecycle method.
     // when react runs a compnent then a series of methods will run actually .
@@ -96,19 +98,23 @@ export class News extends React.Component {
       <div className="container my-3">
         <h2>{this.props.heading}</h2>
         <div className="row">
-          {this.state.articles.map((element) => {
-            return <div className="col md-4" key={element.url}>
+          {this.state.articles!==undefined && this.state.articles.map((element) => {
+            return (
+              <div className="col md-4" key={element.url}>
                 <NewsItem
-                  title={element.title?element.title.slice(0, 40): ""}
-                  description={element.description?element.description.slice(0, 141):""}
+                  title={element.title ? element.title.slice(0, 40) : ""}
+                  description={
+                    element.description ? element.description.slice(0, 141) : ""
+                  }
                   imageUrl={element.urlToImage}
                   newsUrl={element.url}
                 />
               </div>
+            );
           })}
         </div>
       </div>
-    )
+    );
   }
 }
 

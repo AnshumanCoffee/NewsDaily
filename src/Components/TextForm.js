@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import countWords from "../Utils/stringUtils";
 
 // console.log('object');
 
 export default function TextForm(props) {
+
+  // const splitText = ()=>{
+  //   let  text = text.split(" ").length;
+  // };
+
   const handleUppercaseClick = () => {
     // console.log("Uppercase was clicked");
     let newText = text.toUpperCase();
@@ -50,10 +56,10 @@ export default function TextForm(props) {
         Clear text
       </button>
     </div>
-    <div className="conatiner" my-2>
+    <div className="conatiner my-2" >
         <h2>Your News Article's Summary</h2>
-        <p>{text.split(" ").length} words, {text.length} characters</p>
-        <p>{0.008*text.split(" ").length } minutes to read</p>
+        <p>{countWords(text)} words, {text.length} characters</p>
+        <p>{0.008*countWords(text) } minutes to read</p>
         <h3>Preview</h3>
         <p>{text}</p>
     </div>
