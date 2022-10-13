@@ -1,5 +1,6 @@
 import React from "react";
 import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
 
 export class News extends React.Component {
   articles = [
@@ -73,19 +74,20 @@ export class News extends React.Component {
     // console.log("I'm constructor");
     this.state = {
       articles: this.articles,
-      loading: false,
+      loading: true,
     };
   }
 
   async componentDidMount() {
     // console.log("cdm1");
     let url =
-    "https://newsapi.org/v2/everything?q=tesla&from=2022-09-10&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
+      "https://newsapi.org/v2/everything?q=tesla&from=2022-09-12&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
+    this.setState({ laoding: true });
 
     let data = await fetch(url);
     let parsedData = await data.json();
     // console.log(parsedData);
-    this.setState({ articles: parsedData.articles });
+    this.setState({ articles: parsedData.articles, loading: false });
   }
 
   render() {
@@ -96,22 +98,26 @@ export class News extends React.Component {
     //render first compile's JSX in HTML then it render's HTML .
     return (
       <div className="container my-3">
+        {this.state.loading && <Spinner />}
         <h2>{this.props.heading}</h2>
         <div className="row">
-          {this.state.articles!==undefined && this.state.articles.map((element) => {
-            return (
-              <div className="col md-4" key={element.url}>
-                <NewsItem
-                  title={element.title ? element.title.slice(0, 40) : ""}
-                  description={
-                    element.description ? element.description.slice(0, 141) : ""
-                  }
-                  imageUrl={element.urlToImage}
-                  newsUrl={element.url}
-                />
-              </div>
-            );
-          })}
+          {this.state.articles !== undefined &&
+            this.state.articles.map((element) => {
+              return (
+                <div className="col md-4" key={element.url}>
+                  <NewsItem
+                    title={element.title ? element.title.slice(0, 40) : ""}
+                    description={
+                      element.description
+                        ? element.description.slice(0, 141)
+                        : ""
+                    }
+                    imageUrl={element.urlToImage}
+                    newsUrl={element.url}
+                  />
+                </div>
+              );
+            })}
         </div>
       </div>
     );
