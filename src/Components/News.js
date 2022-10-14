@@ -81,7 +81,7 @@ export class News extends React.Component {
   async componentDidMount() {
     // console.log("cdm1");
     let url =
-      "https://newsapi.org/v2/everything?q=tesla&from=2022-09-12&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
+      "https://newsapi.org/v2/everything?q=tesla&from=2022-09-14&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
     this.setState({ laoding: true });
 
     let data = await fetch(url);
