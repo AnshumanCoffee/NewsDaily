@@ -81,7 +81,7 @@ export class News extends React.Component {
   async componentDidMount() {
     // console.log("cdm1");
     let url =
-      "https://newsapi.org/v2/everything?q=tesla&from=2022-09-14&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
+      "https://newsapi.org/v2/everything?q=tesla&from=2022-09-18&sortBy=publishedAt&apiKey=ebf7822aea2f4a3baec55f66d15e5926";
     this.setState({ laoding: true });
 
     let data = await fetch(url);
@@ -97,9 +97,9 @@ export class News extends React.Component {
     // when react runs a compnent then a series of methods will run actually .
     //render first compile's JSX in HTML then it render's HTML .
     return (
-      <div className="container my-3">
+      <div className="container my-3 text-center">
         {this.state.loading && <Spinner />}
-        <h2>{this.props.heading}</h2>
+        <h2 style={{ marginTop: "60px" }}>{this.props.heading}</h2>
         <div className="row">
           {this.state.articles !== undefined &&
             this.state.articles.map((element) => {

@@ -5,6 +5,11 @@ import News from "./Components/News";
 import TextForm from "./Components/TextForm";
 import React, { useState } from "react";
 import Alert from "./Components/Alert";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -20,7 +25,6 @@ function App() {
       document.body.style.backgroundColor = "white";
       showAlert("Light Mode Enable", "success");
       document.title = "NewsDaily - LightMode";
-
     }
   };
   const showAlert = (message, type) => {
@@ -35,14 +39,31 @@ function App() {
   return (
     <>
       {/* <Navbar  /> */}
-      <Navbar title="NewsDaily" mode={mode} toggleMode={toggleMode} />
-      <div className="container my-3">
-        <TextForm showAlert={showAlert} heading="Write Your Article Below..." mode={mode} />
+      <BrowserRouter>
+        <Navbar title="NewsDaily" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-
-        <About />
-        <News heading="NewsDaily - Top Headlines" />
-      </div>
+        <div className="container my-3">
+          <Routes>
+            <Route exact path="/about" element={<About />}/>
+            <Route
+                exact path="/"
+                element={
+                  <TextForm
+                    showAlert={showAlert}
+                    heading="Write Your Article Below..."
+                    mode={mode}
+                  />
+                }
+              />
+              <Route
+                  exact path="/news"
+                  element={<News heading="NewsDaily - Top Headlines" />}
+                />
+              
+          </Routes>
+          
+        </div>
+      </BrowserRouter>
     </>
   );
 }

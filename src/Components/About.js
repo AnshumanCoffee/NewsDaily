@@ -25,9 +25,12 @@ export default function About() {
   };
 
   return (
-    <div className="container" style={myStyle}>
-      <h1 className="my-2">About Us</h1>
-      <div className="accordion" id="accordionExample">
+
+    <div className="container margin: auto text-center" style={myStyle}>
+    {/* console.log("grsgytddd")  */}
+
+      <h1 style={{ marginTop: "60px" }}>About Us</h1>
+      <div  className="accordion" id="accordionExample">
         <div className="accordion-item" style={myStyle}>
           <h2 className="accordion-header" id="headingOne">
             <button
